@@ -1,0 +1,76 @@
+# Ramas
+
+Use ramas en GitHub para aislar el trabajo de desarrollo, administrar ramas predeterminadas y colaborar eficazmente mediante solicitudes de incorporación de cambios y protecciones de rama.
+
+## Acerca de las ramas
+
+Las ramas le permiten desarrollar características, corregir errores o experimentar de forma segura con nuevas ideas en un área independiente del repositorio.
+
+Siempre puedes crear una rama a partir de otra rama existente. Habitualmente, puedes crear una rama nueva desde la rama predeterminada de tu repositorio. Podrás entonces trabajar en esta rama nueva aislado de los cambios que otras personas hacen al repositorio.
+
+Una rama que cree para crear una característica se denomina normalmente una rama de características o una rama de tema. Consulte [Gestión de ramas en tu repositorio](/es/pull-requests/how-tos/commit-changes/managing-branches-within-your-repository).
+
+También puede usar una rama para publicar un GitHub Pages sitio. Consulte [¿Qué es GitHub Pages?](/es/pages/getting-started-with-github-pages/what-is-github-pages).
+
+Debes tener acceso de escritura en un repositorio para crear una rama, abrir una solicitud de extracción o eliminar y restablecer ramas dentro de una solicitud de extracción. Consulte [Permisos de acceso en GitHub](/es/get-started/learning-about-github/access-permissions-on-github).
+
+## Acerca de la rama predeterminada
+
+Cuando creas un repositorio con contenido en GitHub, GitHub crea el repositorio con una sola rama. Esta primera rama en el repositorio es la rama predeterminada. La rama predeterminada es la rama que GitHub se muestra cuando alguien visita el repositorio. La rama predeterminada también es la rama inicial que Git verifica localmente cuando alguien clona el repositorio. A menos de que especifiques una rama diferente, la rama predeterminada en un repositorio será la rama base para las solicitudes de cambio nuevas y para las confirmaciones de código.
+
+De forma predeterminada, GitHub asigna un nombre a la rama `main` predeterminada en cualquier repositorio nuevo.
+
+Puedes cambiar la rama predeterminada de un repositorio existente. Para más información, consulta [Cambiar la rama predeterminada](/es/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch).
+
+Puedes configurar el nombre de la rama predeterminada para los repositorios nuevos. Para más información, consulta [Administrar el nombre de la rama predeterminada para tus repositorios](/es/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-the-default-branch-name-for-your-repositories), [Administrar el nombre de la rama predeterminada para los repositorios en tu organización](/es/organizations/managing-organization-settings/managing-the-default-branch-name-for-repositories-in-your-organization) y [Implantar políticas de gestión de repositorios en su empresa](/es/enterprise-cloud@latest/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise#enforcing-a-policy-for-the-default-branch-name).
+
+## Trabajar con ramas protegidas
+
+Las ramas protegidas ayudan a los mantenedores a aplicar reglas en ramas importantes. Una rama protegida puede bloquear las inserciones o eliminaciones forzadas, requerir comprobaciones de estado, requerir revisiones, requerir aprobación del propietario del código o requerir confirmaciones firmadas antes de que los cambios se puedan combinar.
+
+Estas protecciones ayudan a los equipos a mantener las ramas importantes estables y hacer que las expectativas sean claras antes de combinar una solicitud de incorporación de cambios. Para ver si la solicitud de incorporación de cambios se puede combinar, active la casilla de combinación en la parte inferior de la pestaña **Conversación** de la solicitud de incorporación de cambios. Consulte [Acerca de las ramas protegidas](/es/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+
+> [!NOTE]
+> Si eres administrador de un repositorio, puedes fusionar las solicitudes de extracción en ramas con protecciones habilitadas incluso si la solicitud no cumple los requisitos, a menos que las protecciones de rama se hayan establecido en "Incluir administradores".
+
+## Comparación de ramas en solicitudes de incorporación de cambios
+
+Una solicitud de incorporación de cambios compara los cambios propuestos en la rama principal con la rama base. Al crear la solicitud de incorporación de cambios, puede cambiar la rama base con la que está comparando los cambios. En la pestaña **Archivos modificados** se muestra lo que cambiaría si la solicitud de incorporación de cambios se combina.
+
+Las vistas de diferencias ayudan a los revisores a comprender los cambios sin leer todas las confirmaciones. Puede ver una diferencia unificada, dividir diferencias, diferencias enriquecidas o diferencias de origen; omitir los cambios de espacios en blanco; o filtre los archivos para centrarse en los cambios más relevantes.
+
+![Captura de pantalla de la pestaña "Archivos cambiados" de un pull request. La pestaña "Vista de diferencias" está resaltada en naranja oscuro.](/assets/images/help/pull_requests/diff-settings-menu.png)
+
+Es posible que las diferencias no se muestren si una solicitud de incorporación de cambios supera los límites de diferencias del repositorio o si un archivo está oculto por una regla en el archivo *.gitattributes* del repositorio. Consulte [Límites de los repositorios](/es/repositories/creating-and-managing-repositories/repository-limits#diff-limits) y [Personalización de cómo aparecen los archivos modificados en GitHub](/es/repositories/working-with-files/managing-files/customizing-how-changed-files-appear-on-github).
+
+### Comparaciones de diferencias de Git de tres puntos y de dos puntos
+
+El `git diff` comando admite dos métodos de comparación. Las solicitudes de incorporación de cambios GitHub muestran una diferencia de tres puntos.
+
+| Método      | Comando          | Comparación de lo que compara                                                                                    |
+| ----------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Tres puntos | `git diff A...B` | La confirmación más reciente común de ambas ramas (base de mezcla) y la versión más reciente de la rama de tema. |
+| Dos puntos  | `git diff A..B`  | El estado más reciente de la rama base (por ejemplo, `main`) y la versión más reciente de la rama de tema.       |
+
+Una diferenciación de dos puntos compara dos referencias confirmables de Git, como SHA u OID (ID de objeto), directamente entre sí. En GitHub, las referencias de confirmación de Git en una comparación de diferencias de dos puntos deben insertarse en el mismo repositorio o en sus bifurcaciones.
+
+Consulte [Opciones de diferencias de Git](https://git-scm.com/docs/git-diff#git-diff-emgitdiffemltoptionsgtltcommitgtltcommitgt--ltpathgt82308203) en el sitio del libro *de Git pro* .
+
+### Acerca de la comparación de tres puntos en GitHub
+
+Dado que la comparación de tres puntos usa la base de combinación, se centra en "lo que introduce una solicitud de incorporación de cambios".
+
+Cuando se usa una comparación de dos puntos, la diferencia cambia cuando se actualiza la rama base, incluso si no ha realizado ningún cambio en la rama puntual. Una comparación de dos puntos también se centra en la rama base, lo que puede hacer que los cambios introducidos por la rama de tema sean más difíciles de entender.
+
+Por el contrario, una comparación de tres puntos sigue mostrando los cambios introducidos por la rama de tema, ya que las ramas difieren.
+
+### Fusión frecuente
+
+Para evitar confusiones, combine la rama base (por ejemplo, `main`) en la rama de tema con frecuencia. Al combinar la rama base, las diferencias mostradas por comparaciones de dos puntos y tres puntos son las mismas. Recomendamos fusionar un pull request lo antes posible. Esto anima a los colaboradores a que realicen solicitudes de incorporación de cambios más pequeñas, lo que se recomienda en general.
+
+## Lectura adicional
+
+* [Solicitudes de incorporación de cambios](/es/pull-requests/reference/pull-requests)
+* [glosario de GitHub](/es/get-started/learning-about-github/github-glossary#branch) en el GitHub glosario
+* [Resumen de las ramas](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) en la documentación de Git
+* [Horquillas](/es/pull-requests/reference/forks)
